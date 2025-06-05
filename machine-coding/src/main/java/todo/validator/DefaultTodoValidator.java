@@ -87,7 +87,7 @@ public class DefaultTodoValidator implements TodoValidator {
 
     @Override
     public void validateCreate(String todoId, String nodeId, TodoInfo todoInfo) throws TodoValidationException {
-        log.debug("Validating todo info for todoId: {}, nodeId: {}, info: {}", todoId, nodeId, todoInfo);
+        log.info("Validating todo info for todoId: {}, nodeId: {}, info: {}", todoId, nodeId, todoInfo);
         validate(todoInfo);
         isValidTodoNodeHierarchy(todoId, nodeId);
         isValidSubNodeDuration(todoId, nodeId, todoInfo);
