@@ -1,5 +1,6 @@
 package todo.display;
 
+import lombok.extern.slf4j.Slf4j;
 import todo.models.TodoInfo;
 import todo.models.TodoList;
 import todo.models.TodoNode;
@@ -10,6 +11,7 @@ import java.util.List;
 
 import static todo.models.TodoType.LIST;
 
+@Slf4j
 public class DefaultTodoDisplay implements TodoDisplay {
 
     private static final String TODO_DISPLAY_FORMAT = "%s | %s - %s";
@@ -22,10 +24,10 @@ public class DefaultTodoDisplay implements TodoDisplay {
     private void displayRecursively(TodoNode todoNode, int level) {
         int spaces = getSpaceIndentation(level);
         for(int i = 0; i < spaces; i++) {
-            System.out.print(" ");
+            log.info(" ");
         }
         String displayString = getDisplayString(todoNode);
-        System.out.println(displayString);
+        log.info(displayString);
         TodoType todoType = todoNode.getType();
         if (LIST.equals(todoType)) {
             List<TodoNode> subTodos = ((TodoList) todoNode).getSubTodoNodes();

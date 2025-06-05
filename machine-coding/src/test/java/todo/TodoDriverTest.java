@@ -4,6 +4,7 @@ import todo.display.DefaultTodoDisplay;
 import todo.display.TodoDisplay;
 import todo.exceptions.TodoException;
 import todo.exceptions.TodoValidationException;
+import todo.locks.TodoLockHandler;
 import todo.logic.TodoNodeIdentifier;
 import todo.models.TodoInfo;
 import todo.models.TodoNode;
@@ -22,10 +23,12 @@ public class TodoDriverTest {
         TodoNodeIdentifier todoNodeIdentifier = new TodoNodeIdentifier();
         DefaultTodoRepo defaultTodoRepo = new DefaultTodoRepo(todoNodeIdentifier);
 
-        TodoValidator todoValidator = new DefaultTodoValidator();
+        TodoValidator todoValidator = new DefaultTodoValidator(defaultTodoRepo);
         TodoDisplay todoDisplay = new DefaultTodoDisplay();
 
-        defaultTodoService = new DefaultTodoService(defaultTodoRepo, todoValidator, todoDisplay);
+        TodoLockHandler todoLockHandler = new TodoLockHandler();
+
+        defaultTodoService = new DefaultTodoService(defaultTodoRepo, todoValidator, todoDisplay, todoLockHandler);
     }
 
     public static void main(String[] args) throws TodoValidationException, TodoException {

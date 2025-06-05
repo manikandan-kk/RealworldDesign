@@ -7,4 +7,6 @@ public interface TodoValidator {
 
     void validate(TodoInfo todoInfo) throws TodoValidationException;
 
+    void validateCreate(String todoId, String nodeId, TodoInfo todoInfo) throws TodoValidationException;
+
 }
